@@ -19,7 +19,6 @@
 <style>
 .el-page-header {
   padding: 25px 0 15px 0;
-  margin-bottom: 6px;
 }
 .el-page-header__header {
   justify-content: flex-end;

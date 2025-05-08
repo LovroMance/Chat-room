@@ -2,23 +2,23 @@
 defineOptions({
     name: 'testPage',
 })
-import { ref } from 'vue'
-import { getMessageListApi } from '@/api/getMessage'
+// import { ref } from 'vue'
+// import { getMessageListApi } from '@/api/getMessage'
 
-const messageList = ref([])
-const getMessageList = async () => {
-    const {
-        data: { data },
-    } = await getMessageListApi()
-    messageList.value = data
-    console.log(data)
-}
+// const messageList = ref([])
+// const getMessageList = async () => {
+//     const {
+//         data: { data },
+//     } = await getMessageListApi()
+//     messageList.value = data
+//     console.log(data)
+// }
 </script>
 
 <template>
     <div class="chat-container">
-        <button @click="getMessageList">获取消息内容</button>
         <div class="chat-messages">
+            <!-- 获取消息渲染（暂时取消） -->
             <div v-for="item in messageList" :key="item">
                 <!-- 对方/自己消息 -->
                 <div :class="['message-row', item.fromUid === 1 ? 'left' : 'right']">
@@ -34,6 +34,47 @@ const getMessageList = async () => {
                     <!-- 对方消息的时间 -->
                     <div class="msg-time" v-if="item.fromUid === 1">{{ item.time }}</div>
                 </div>
+            </div>
+
+            <!-- 对方消息 -->
+            <div class="message-row left">
+                <img
+                    class="avatar"
+                    src="https://cube.elemecdn.com/0/88/03b0d39583f48206768a7534e55bcpng.png"
+                    alt="avatar"
+                />
+                <div class="bubble left-bubble">你好呀！</div>
+                <div class="msg-time">09:00</div>
+            </div>
+            <!-- 自己消息 -->
+            <div class="message-row right">
+                <div class="msg-time">09:01</div>
+                <div class="bubble right-bubble">你好！你是谁？</div>
+                <img
+                    class="avatar"
+                    src="https://cube.elemecdn.com/0/88/03b0d39583f48206768a7534e55bcpng.png"
+                    alt="avatar"
+                />
+            </div>
+            <!-- 对方消息 -->
+            <div class="message-row left">
+                <img
+                    class="avatar"
+                    src="https://cube.elemecdn.com/0/88/03b0d39583f48206768a7534e55bcpng.png"
+                    alt="avatar"
+                />
+                <div class="bubble left-bubble">我是AI助手，很高兴认识你！</div>
+                <div class="msg-time">09:02</div>
+            </div>
+            <!-- 自己消息 -->
+            <div class="message-row right">
+                <div class="msg-time">09:03</div>
+                <div class="bubble right-bubble">我也很高兴认识你！</div>
+                <img
+                    class="avatar"
+                    src="https://cube.elemecdn.com/0/88/03b0d39583f48206768a7534e55bcpng.png"
+                    alt="avatar"
+                />
             </div>
         </div>
         <div class="chat-input">
@@ -51,6 +92,7 @@ const getMessageList = async () => {
     background: #23272e;
     border-radius: 0 0 20px 0;
     padding: 20px;
+    height: 100%;
 }
 
 .chat-messages {

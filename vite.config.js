@@ -26,4 +26,13 @@ export default defineConfig({
       '@': fileURLToPath(new URL('./src', import.meta.url))
     },
   },
+  server: {
+    port: 5173,
+    proxy: {
+      '/auth': {
+        target: 'http://localhost:10086',
+        changeOrigin: true,
+      }
+    }
+  }
 })

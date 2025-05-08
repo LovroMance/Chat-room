@@ -4,22 +4,42 @@ defineOptions({
 })
 
 import { ref } from 'vue'
+import { useRouter } from 'vue-router'
+const router = useRouter()
 
 const username = ref('')
 const password = ref('')
 const confirmPassword = ref('')
 
+// 注册api调用
+import { register } from '@/api/user'
+const UseRegister = async () => {
+        const res = await register(username.value, password.value)
+        console.log(res)
+        alert('注册成功！')
+        router.push('/login')
+}
+
 const handleRegister = () => {
     // 这里可以添加注册逻辑
-    if (!username.value || !password.value || !confirmPassword.value) {
-        alert('请填写完整信息')
+    if (!username.value) {
+        alert('请填写正确的用户名')
+        return
+    }
+    if(!password.value){
+        alert('请填写密码')
+        return
+    }
+    const passwordRegex = /^(?=.*[A-Za-z])(?=.*\d)[A-Za-z\d]{6,}$/
+    if(!passwordRegex.test(password.value)){
+        alert('密码必须包含数字和字母，长度不低于6位')
         return
     }
     if (password.value !== confirmPassword.value) {
         alert('两次输入的密码不一致')
         return
     }
-    alert('注册成功！')
+    UseRegister()
 }
 </script>
 
@@ -29,7 +49,7 @@ const handleRegister = () => {
             <h2 class="register-title">注册新账号</h2>
             <div class="register-form">
                 <input v-model="username" type="text" placeholder="用户名" class="register-input" />
-                <input v-model="password" type="password" placeholder="密码" class="register-input" />
+                <input v-model="password" type="password" placeholder="密码（包含数字、字母，不低于6位）" class="register-input" />
                 <input v-model="confirmPassword" type="password" placeholder="确认密码" class="register-input" />
                 <button class="register-btn" @click="handleRegister">注册</button>
             </div>
@@ -108,4 +128,4 @@ const handleRegister = () => {
     background: linear-gradient(90deg, #545c64 60%, #6b7b8a 100%);
     box-shadow: 0 6px 24px rgba(107, 123, 138, 0.18);
 }
-</style>
+</style>@/api/user@/api/user

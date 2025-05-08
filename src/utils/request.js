@@ -1,8 +1,9 @@
 import axios from 'axios'
 
 const instance = axios.create({
-    baseURL: 'http://127.0.0.1:4523/m1/6298884-5993772-default',
+    baseURL: 'http://localhost:10086',
     timeout: 3000,  // 请求超时时间
+
     // headers: { 'X-Custom-Header': 'foobar' }
     // headers: { 'Authorization': 'Bearer 你的token' }  是否需要呢
 });

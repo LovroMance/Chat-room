@@ -8,7 +8,7 @@ import { Document, Menu as IconMenu, Location, Setting } from '@element-plus/ico
 <template>
     <el-row class="tac">
         <el-col class="menu-container">
-            <h2 class="menu-title">我是乃龙</h2>
+            <h2 class="menu-title">Monkey聊天室</h2>
             <el-menu
                 router
                 active-text-color="#ffd04b"

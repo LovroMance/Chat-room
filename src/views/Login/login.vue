@@ -10,13 +10,21 @@ const router = useRouter()
 const username = ref('')
 const password = ref('')
 
-const handleLogin = () => {
-  // 这里可以添加登录逻辑
-  console.log('账号:', username.value, '密码:', password.value)
-}
-
-const handleRegister = () => {
-  router.push('/register')
+// 登录api调用
+import { login } from '@/api/user'
+const UseLogin = async() => {
+  const { data } = await login(username.value, password.value, '2fbfa38f-4eba-401c-904b-b7937c284141')
+  console.log(data)
+  if(data.code !== 200){
+    alert('账号或密码错误')
+    username.value = ''
+    password.value = ''
+    return
+  }
+  if(data.code === 200){
+    alert('登录成功')
+    router.push('/HomePage')
+  }
 }
 </script>
 
@@ -37,8 +45,8 @@ const handleRegister = () => {
           placeholder="请输入密码"
           class="login-input"
         />
-        <button class="login-btn" @click="handleLogin">登录</button>
-        <button class="register-btn" @click="handleRegister">注册账号</button>
+        <button class="login-btn" @click="UseLogin">登录</button>
+        <button class="register-btn" @click="router.push('/register')">注册账号</button>
       </div>
     </div>
   </div>
