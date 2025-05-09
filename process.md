@@ -16,6 +16,12 @@
 
 我的github名字为origin, gitee上的是chat
 
+# 添加到缓存区
+git add .
+
+# 提交到本地仓库
+git commit -m "提交信息"
+
 # 将本地 fronted 分支推送到远程 frontend 分支
 git push chat fronted:frontend
 
