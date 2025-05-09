@@ -13,3 +13,24 @@
 6.现在私聊界面是需要手动获取消息，到时候修改一下在挂在mounted的时候就获取消息就可以了
 7.做一下注册登陆界面
 8.控制一下git
+
+我的github名字为origin, gitee上的是chat
+
+# 将本地 fronted 分支推送到远程 frontend 分支
+git push chat fronted:frontend
+
+# 查看本地分支
+git branch
+
+# 查看远程分支
+git branch -r
+
+# 查看所有分支（本地+远程）
+git branch -a
+
+# 查看 chat 远程仓库的详细信息
+git remote show chat
+
+# 强制推送（会覆盖远程内容，谨慎使用）
+# 把本地main分支推送到远程仓库chat的frontend分支
+git push -f chat main:frontend
