@@ -7,13 +7,18 @@ import { ref } from 'vue'
 import { useRouter } from 'vue-router'
 const router = useRouter()
 
+// 获取用户仓库，存储用户信息
+import { useUserStore } from '@/stores/index'
+const userStore = useUserStore()
+import { setTokenStorage } from '@/utils/localstorage'
+
 const username = ref('')
 const password = ref('')
 
 // 登录api调用
 import { login } from '@/api/user'
 const UseLogin = async() => {
-  const { data } = await login(username.value, password.value, '2fbfa38f-4eba-401c-904b-b7937c284141')
+  const { data } = await login(username.value, password.value)
   console.log(data)
   if(data.code !== 200){
     alert('账号或密码错误')
@@ -22,6 +27,16 @@ const UseLogin = async() => {
     return
   }
   if(data.code === 200){
+    // 登陆成功就把用户的信息存到UserStore里
+    const userInfo = {
+      username: username.value,
+      password: password.value,
+      uid: data.uid,
+      token: data.token
+    }
+    userStore.setInfo(userInfo)
+    // 把用户token存到本地存储
+    setTokenStorage(data.token)
     alert('登录成功')
     router.push('/HomePage')
   }

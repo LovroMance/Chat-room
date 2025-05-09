@@ -39,7 +39,7 @@ import { Document, Menu as IconMenu, Location, Setting } from '@element-plus/ico
                     </el-icon>
                     <span style="margin-bottom: 3px;">朋友圈</span>
                 </el-menu-item>
-                <el-menu-item index="/Chat">
+                <el-menu-item index="/HomePage/Chat">
                     <el-icon>
                         <setting />
                     </el-icon>

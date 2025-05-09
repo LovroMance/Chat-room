@@ -1,19 +1,25 @@
 <script setup>
 import HomePageMenu from '@/components/HomePage/Menu.vue'
 import HomePageHeader from '@/components/HomePage/PageHeader.vue'
+
+// 获取用户仓库，存储用户信息
+import { useUserStore } from '@/stores/index'
+const userStore = useUserStore()
+console.log(userStore)
+
 </script>
 
 <template>
   <div class="container">
     <!-- 左侧菜单栏 -->
     <aside class="sidebar">
-      <HomePageMenu />
+      <HomePageMenu/>
     </aside>
     <!-- 右侧内容 -->
     <main class="main-content">
-      <HomePageHeader />
+      <HomePageHeader/>
       <div class="router-content">
-        <router-view />
+        <router-view/>
       </div>
     </main>
   </div>
