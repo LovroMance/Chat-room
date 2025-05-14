@@ -1,6 +1,6 @@
 <script setup>
-import HomePageMenu from '@/components/HomePage/Menu.vue'
-import HomePageHeader from '@/components/HomePage/PageHeader.vue'
+import HomePageMenu from '@/components/HomePage/Menu'
+import HomePageHeader from '@/components/HomePage/PageHeader'
 
 // 获取用户仓库，存储用户信息
 import { useUserStore } from '@/stores/index'

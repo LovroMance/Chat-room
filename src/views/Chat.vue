@@ -82,6 +82,13 @@ const scrollToBottom = () => {
     chatMessagesRef.value.scrollTop = chatMessagesRef.value.scrollHeight
   }
 }
+
+setTimeout(() => {
+  navigator.storage.estimate().then((estimate) => {
+  console.log(`可用空间: ${(estimate.quota - estimate.usage)/1024/1024} MB`);
+  console.log(`总配额: ${estimate.quota/1024/1024} MB`); // 通常为硬盘的50%
+});
+}, 2000);
 </script>
 
 <template>

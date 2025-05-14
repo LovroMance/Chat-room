@@ -85,8 +85,3 @@ export async function getAllChatRecords() {
     request.onerror = () => reject('获取聊天记录失败')
   })
 }
-
-navigator.storage.estimate().then((estimate) => {
-  console.log(`可用空间: ${estimate.quota - estimate.usage} bytes`);
-  console.log(`总配额: ${estimate.quota} bytes`); // 通常为硬盘的50%
-});
