@@ -24,6 +24,8 @@ git commit -m "提交信息"
 
 # 将本地 fronted 分支推送到远程 frontend 分支
 git push chat fronted:frontend
+# 推送到我的github上
+git push origin main (origin是我的github在这的名字,main是我的本地仓库名)
 
 # 查看本地分支
 git branch

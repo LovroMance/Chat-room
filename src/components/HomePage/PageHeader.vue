@@ -1,5 +1,6 @@
 <script setup>
-// import { UserFilled } from '@element-plus/icons-vue'
+import { useUserStore } from '@/stores/index'
+const userStore = useUserStore()
 </script>
 
 <template>
@@ -9,8 +10,8 @@
         <!-- 头像 -->
         <el-avatar
         :size="40"
-        src="/src/images/username.jpg" />
-        <span class="username" style="margin-left: 10px;"> 美猴王 </span>
+        :src="userStore.avatar"/>
+        <span class="username" style="margin-left: 10px;"> {{ userStore.username }} </span>
       </div>
     </template>
   </el-page-header>

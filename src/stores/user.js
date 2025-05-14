@@ -3,16 +3,19 @@ import { defineStore } from 'pinia'
 import { ref } from 'vue'
 import { readonly } from 'vue'
 export const useUserStore = defineStore('user', () => {
-    const token = ref('')
-    const uid = ref('')
-    const username = ref('')
-    const password = ref('')
+    const token = ref('')  // token认证
+    const uid = ref('')  // 用户id
+    const username = ref('')  // 用户名
+    const password = ref('')  // 密码
+    const avatar = ref('')  // 用户头像
 
     const setInfo = (newInfo) => {
+        token.value = newInfo.token
         uid.value = newInfo.uid
         username.value = newInfo.username
         password.value = newInfo.password
-        token.value = newInfo.token
+        // 用户默认头像，后续可以通过个人资料修改来上传头像
+        avatar.value = newInfo.avatar
     }
 
     // 登录成功后，设置token
@@ -30,6 +33,7 @@ export const useUserStore = defineStore('user', () => {
         uid: readonly(uid),
         username: readonly(username),
         password: readonly(password),
+        avatar: readonly(avatar),
         setInfo,
         setToken,
         clearToken

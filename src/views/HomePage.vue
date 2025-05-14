@@ -7,6 +7,12 @@ import { useUserStore } from '@/stores/index'
 const userStore = useUserStore()
 console.log(userStore)
 
+// 从本地存储中获取用户信息
+// 进入页面进行渲染
+import { getStorage } from '@/utils/localstorage'
+userStore.setInfo(getStorage('user-info'))
+
+
 </script>
 
 <template>

@@ -1,7 +1,13 @@
 import { getStorage } from './localstorage'
+// 发送接收的聊天历史仓库pinia
+import { useReceiveHistoryStore } from '@/stores/receiveHistory'
+const receiveHistoryStore = useReceiveHistoryStore()
+// 本地持久化聊天历史IndexedDB
+import { addChatRecord } from '@/utils/IndexedDB'
+
 
 // WebSocket 服务器url
-const WS_URL = 'ws://localhost:10086/ws/echo'
+const WS_URL = 'ws://localhost:10086/ws/chatroom'
 
 // WebSocket 实例
 let ws = null
@@ -25,11 +31,15 @@ const bindEvents = () => {
         isConnected = true
     }
 
-    ws.onmessage = (event) => {
+    ws.onmessage = async (event) => {
         try {
             // 尝试解析 JSON
             try {
                 const data = JSON.parse(event.data)
+                // 收到消息就把消息存入receiveHistoryStore中
+                receiveHistoryStore.getSendHistory(data)
+                // 存入IndexedDB
+                await addChatRecord(data)
                 console.log('收到消息:', data)
             } catch {
                 // 如果不是 JSON 格式，直接输出原始消息

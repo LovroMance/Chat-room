@@ -1,11 +1,11 @@
-const USER_TOKEN = 'user-token'
+const USER_INFO = 'user-info'
 
 // 将token存储到本地
-export const setTokenStorage = (token) => {
+export const setUserStorage = (userInfo) => {
     if (typeof value === 'object') {
-        token = JSON.stringify(token)
+        userInfo = JSON.stringify(userInfo)
     }
-    setStorage(USER_TOKEN, token)
+    setStorage(USER_INFO, userInfo)
 }
 
 // 本地存储数据
@@ -20,13 +20,12 @@ export const setStorage = (key, value) => {
 export const getStorage = (key) => {
     try {
         const value = localStorage.getItem(key)
-        if (value === 'undefined' || value === null) {
+        if (value === null) {
             return null
         }
         // 尝试 JSON 解析
         try {
-            const parsed = JSON.parse(value)
-            return parsed
+            return JSON.parse(value)
         } catch {
             // 解析失败说明不是 JSON 格式 直接返回（例如字符串类或整数类型）
             return value

@@ -21,7 +21,7 @@ export const login = (username, password, uid) => {
 
 // 修改用户名
 export const setUsername = (uid, username) => {
-    return request.post('/modify_name', {
+    return request.post('/user/modify/name', {
         uid: uid,
         username: username  // 新用户名
     })
@@ -32,6 +32,14 @@ export const setPassword = (uid, password) => {
     return request.post('modify_password', {
         uid: uid,
         password: password  // 新密码
+    })
+}
+
+// 修改用户头像
+export const setAvatar = (uid, avatar) => {
+    return request.post('/user/modify/avatar', {
+        uid: uid,
+        avatar: avatar  // 新头像
     })
 }
 
